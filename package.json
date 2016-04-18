@@ -31,22 +31,8 @@
     "express-ejs-layouts": "~1.1.0"
   },
   "devDependencies": {
-	 "chai": "~2.0.0",
-	 "gulp-karma": "0.0.5",
 	 "gulp-util": "^3.0.7",
 	 "gulp-uglify": "*",
-	 "gulp-gh-pages": "*",
-	 "karma": "*",
-	 "karma-chai": "*",
-	 "karma-chrome-launcher": "^0.2.2",
-	 "karma-firefox-launcher": "*",
-	 "karma-html2js-preprocessor": "*",
-	 "karma-mocha": "*",
-	 "karma-phantomjs-launcher": "^1.0.0",
-	 "karma-safari-launcher": "^0.1.1",
-	 "minimax": "*",
-	 "mocha": "*",
-	 "optimist": "*",
-	 "phantomjs-prebuilt": "^2.1.5"
+	 "gulp-gh-pages": "*"
   }
 }
