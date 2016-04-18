@@ -23,6 +23,11 @@ app.get('/csv', (request, response) => {
 	response.send({"rows" : calculate(request.query.input)});
 });
 
+app.get('data/:filename', (request,response) => {
+    console.log("Se ha solicitado: " + request.params);
+    response.send(request.params.data);
+});
+
 app.listen(app.get('port'), () => {
     console.log(`Node app is running at localhost: ${app.get('port')}` );
 });
