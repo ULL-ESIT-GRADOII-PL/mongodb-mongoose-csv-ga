@@ -4,8 +4,9 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const expressLayouts = require('express-ejs-layouts');
-
-app.set('port', (process.env.PORT || 8000));
+let port = process.env.PORT || 8080;
+let ip = process.env.IP || '0.0.0.0';
+let addr =  `${ip}:${port}`;
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -28,6 +29,7 @@ app.get('data/:filename', (request,response) => {
     response.send(request.params.data);
 });
 
-app.listen(app.get('port'), () => {
-    console.log(`Node app is running at localhost: ${app.get('port')}` );
+app.listen(port,ip, () =>{
+   console.log('App listening at ${addr}'); 
 });
+
