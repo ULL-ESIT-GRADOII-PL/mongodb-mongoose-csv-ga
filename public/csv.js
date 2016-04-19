@@ -98,4 +98,18 @@ $(document).ready(() => {
     let inputFile = $('.inputfile')[0];
     inputFile.addEventListener('change', handleFileSelect, false);
  });
+ 
+ 
+ $("#save").click(() => {
+   console.log("CLICK");
+   let i = document.getElementById("stored").childElementCount() + 1;
+   let element = document.createElement("input");
+   let type = "button";
+   let name = "File " + i;
+   element.setAttribute("button",type);
+   element.onclick = function(){
+     alert("BUTTON" + i);
+   }
+    document.getElementById("stored").appendChild(element);
+ });
 })();
