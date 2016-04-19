@@ -5,7 +5,7 @@ const app = express();
 const path = require('path');
 const expressLayouts = require('express-ejs-layouts');
 let port = process.env.PORT || 8080;
-let ip = process.env.IP || '0.0.0.0';
+let ip = process.env.IP || '127.0.0.1';
 let addr =  `${ip}:${port}`;
 
 app.set('views', path.join(__dirname, 'views'));
