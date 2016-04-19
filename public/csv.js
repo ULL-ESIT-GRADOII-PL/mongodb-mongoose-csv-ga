@@ -85,7 +85,6 @@ $(document).ready(() => {
    
    /* botones para rellenar el textarea */
    $('button.example').each( (_,y) => {
-         
      $(y).click( () => { dump(`${$(y).text()}.txt`); });
    });
 
@@ -99,9 +98,11 @@ $(document).ready(() => {
     inputFile.addEventListener('change', handleFileSelect, false);
  });
  
- 
+ /**
+  * Boton para almacenar un nuevo fichero en la DB
+  * y que aparezca otro nuevo boton en el div stored
+  */
  $("#save").click(() => {
-   console.log("CLICK");
    let i = document.getElementById("stored").childElementCount() + 1;
    let element = document.createElement("input");
    let type = "button";
