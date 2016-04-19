@@ -1,7 +1,5 @@
 "use strict";
 
-require('./moongoseConnect');
-
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -18,10 +16,7 @@ app.use(express.static(__dirname + '/public'));
 
 //  Incluimos los modulos que necesitamos 
 const calculate = require('./models/calculate');
-const create = require('./models/create');
 
-app.use(express.bodyParser());
-app.post('/create', create);
 
 app.get('/', (request, response) => {
   response.render('index', {title : 'CSV'});
