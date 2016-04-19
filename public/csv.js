@@ -71,10 +71,6 @@ $(document).ready(() => {
       original.value = localStorage.original;
     }
     
-  // $("save").click(() => {
-  //     $.get("/data/")  
-  // });
-   
    $("#parse").click( () => {
          
         if (window.localStorage) localStorage.original = original.value;

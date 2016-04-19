@@ -16,7 +16,12 @@ app.use(expressLayouts);
 
 app.use(express.static(__dirname + '/public'));
 
+//  Incluimos los modulos que necesitamos 
 const calculate = require('./models/calculate');
+const create = require('./models/create');
+
+app.use(express.bodyParser());
+app.post('/create', create);
 
 app.get('/', (request, response) => {
   response.render('index', {title : 'CSV'});
