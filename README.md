@@ -8,14 +8,16 @@
 * [Repositorio de trabajo](https://github.com/marreA/mongodb-mongoose-csv-ga.git)
 
 
-** Despliegue **
-[Enlace de la aplicación en Cloud9]()
+**Despliegue**
 
-**Página de los autores**
+* [Enlace de la aplicación en Cloud9](https://ide.c9.io/marrero_/procesadores/mongodb-mongoose-csv-ga)
 
-* [Gabriel Melián](https://alu0100819786.github.io)
+**Página del autor**
+
 * [Alejandro Marrero](https://marreA.github.io/)
 
 ## RegExp
 Autómata que representa la expresión regular utilizada para analizar la entrada en formato CSV.
 ![](img/dfa.png)
+
+### ![MongoDB](https://www.mongodb.org/assets/global/mongodb-logo-web-tagline-99280fe76cc002a93d023901c1a05df8b621f1c893084a580dee83de9be96630.png)
