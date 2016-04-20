@@ -103,10 +103,17 @@ $(document).ready(() => {
   * y que aparezca otro nuevo boton en el div stored
   */
  $("#save").click(() => {
+     
+    $.get("/data", /* Llamada a AJAX para que se guarde el fichero */
+    {   name: "filename",
+        data: original.value,
+    },
+     'json'
+    );
    let i = document.getElementById("stored").childElementCount() + 1;
-   let element = document.createElement("input");
+   let element = document.createElement("btn" + i);
    let type = "button";
-   let name = "File " + i;
+   let name = "Input" + i;
    element.setAttribute("button",type);
    element.onclick = function(){
      alert("BUTTON" + i);

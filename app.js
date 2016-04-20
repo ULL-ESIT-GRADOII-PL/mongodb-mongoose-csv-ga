@@ -26,13 +26,9 @@ app.get('/csv', (request, response) => {
 	response.send({"rows" : calculate(request.query.input)});
 });
 
-app.get('data/:filename', (request,response) => {
-    console.log("Se ha solicitado: " + request.params);
-    response.send(request.params.data);
-});
 
 app.listen(port,ip, () =>{
-   console.log('App listening at ${addr}');
+   console.log(`App listening at ${addr}`);
    
 // Incluimos Mongoose como ODM
 const mongoose = require("mongoose");
@@ -43,9 +39,9 @@ let remove = require('./routes/remove');
 let query = require('./routes/query');
 
 //  Definimos las rutas que sirve la bd
-app.get('data/:filename', (req, res) => {
+app.get('/data', (req, res) => {
    console.log(req.params.filename);
-   res.send({"original" : query(filename)});
+   res.send({"original" : create( request.query.name,request.query.data)});
 });
 });
 

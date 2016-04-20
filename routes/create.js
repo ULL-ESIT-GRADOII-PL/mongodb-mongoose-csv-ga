@@ -2,9 +2,9 @@
    "use strict";
    const connect = require("connect");
     //  Funcion para crear un fichero en la DB
-    let create = (original) => {
+    let create = (name, original) => {
       new CSV({
-          "file": "filename",
+          "file": name,
           "data": original
       }).save((err) => {
           if(err)
