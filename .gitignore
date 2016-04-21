@@ -1,0 +1,7 @@
+*~
+node_modules
+*log
+*.sass-cache/
+*.map
+data/*
+mongod
