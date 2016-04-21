@@ -1,7 +1,7 @@
   <div class="contenido_total">
     <div class="titulo_practica">
       <h1 align="center">
-				Comma Separated Values (CSV) Analyzer with Ajax
+				Comma Separated Values (CSV) Analyzer with Ajax & MongoDB
       </h1>
     </div>
     <div class="contenido">
@@ -26,10 +26,6 @@
               <button class ="example" type="button">input2</button>
               <button class ="example" type="button">input3</button>
             </div>
-            <div id="stored">
-              <input id="Title" type="text" pattern="^[a-zA-Z_]\w*\.csv$"></input>
-              <input id="save" type="submit"></input>
-            </div>
           </th>
         </tr>
         <tr>
@@ -38,8 +34,12 @@
               <input type="file" class="inputfile" />
           </th>
         </tr>
+        <th id="stored">
+          <label for="Title">Introduzca el nombre del fichero: </label>
+          <input id="Title" type="text" pattern="/^[^0-9]\w+\.csv$/"></input>
+          <input id="save" type="submit"></input>
+        </th>
       </table>
-
       <div class="output" id="finaltable">
       </div>
     </div>

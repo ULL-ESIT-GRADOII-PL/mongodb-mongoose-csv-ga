@@ -34,10 +34,10 @@ const CSV = require('./routes/database');
 mongoose.connect('mongodb://localhost/data');
 
 app.param('input', (req,resp,next, input) =>{
-   if(input.match(/^[a-z_]\w*\.csv$/i))
+   if(input.match(/^[^0-9]\w+\.csv$/))
       req.input =  input; 
       else
-         next(new Error(`<${input} no find`));
+         next(new Error(`<${input}: No puede ser un nombre de fichero`));
       next();
 });
 
@@ -50,7 +50,7 @@ app.get('/mongo/:input',(req, resp) =>{
    });
    let input = new CSV({
       "file": req.input,
-      "data": req.query.content
+      "data": req.query.data
    });
    input.save((err) => {
       if(err){
@@ -62,15 +62,23 @@ app.get('/mongo/:input',(req, resp) =>{
 });
 
 //  Definimos las rutas que sirve la bd
-app.get('/data', (req, res) => {
-   console.log(req.params.filename);
+app.get('/file', (req, res) => {
+   //console.log(req.params.filename);
    CSV.find({}, (err, data) => {
       if(err)
-      return err;
+       return err;
       res.send(data);
    });
 });
 
+// Cuando se busca un fichero determinado
+app.get('/fileName', function(req, res) {
+    CSV.find({
+        file: req.query.file
+    }, function(err, data) {
+        res.send(data);
+    });
+});
 
 // Mostramos la direccion en la que escucha el servidor
 app.listen(app.get('port'), () =>{

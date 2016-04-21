@@ -85,8 +85,8 @@ $(document).ready(() => {
     inputFile.addEventListener('change', handleFileSelect, false);
     
     //  Definimos la ruta para guardar los ficheros en la BD
-    $.get('/data', {}, (data) => {
-       for( i = 0; i < 4; i++){
+    $.get('/file', {}, (data) => {
+       for(let i = 0; i < 4; i++){
            if(data[i]){
                $('button.example').get(i).className = "Button";
                $('button.example').get(i).texContent = data[i].file;
@@ -99,9 +99,9 @@ $(document).ready(() => {
     * y que aparezca otro nuevo boton en el div stored
     */
     $("#save").click(() =>{
-       $.get('mongo/' + $("#Title").val(), {
-           content: $("original").val()
-       })
+       $.get('/mongo/' + $("#Title").val(), {
+           data: original.value
+       });
     });
  });
 })();
