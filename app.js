@@ -6,9 +6,9 @@ const path = require('path');
 const expressLayouts = require('express-ejs-layouts');
 
 let port = process.env.PORT || 8080;
-let ip = process.env.IP || '127.0.0.1';
-let addr =  `${ip}:${port}`;
-
+//let ip = process.env.IP || '0.0.0.0';
+//let addr =  `${ip}:${port}`;
+app.set('port', port);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
@@ -29,6 +29,9 @@ app.get('/csv', (request, response) => {
 // Incluimos Mongoose como ODM
 const mongoose = require("mongoose");
 const CSV = require('./routes/database');
+
+// Hacemos la conexion con la base de datos
+mongoose.connect('mongodb://localhost/data');
 
 app.param('input', (req,resp,next, input) =>{
    if(input.match(/^[a-z_]\w*\.csv$/i))
@@ -70,6 +73,6 @@ app.get('/data', (req, res) => {
 
 
 // Mostramos la direccion en la que escucha el servidor
-app.listen(port,ip, () =>{
-   console.log(`App listening at ${addr}`);
+app.listen(app.get('port'), () =>{
+   console.log(`App listening at ${port}`);
 });  
