@@ -10,7 +10,6 @@
 
 ###[Despliegue](https://procesadores-marrero.c9users.io)
 
-* [Enlace de la aplicación en Cloud9](https://ide.c9.io/marrero_/procesadores/mongodb-mongoose-csv-ga)
 
 **Página del autor**
 
