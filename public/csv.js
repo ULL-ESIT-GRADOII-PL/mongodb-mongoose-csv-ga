@@ -83,27 +83,25 @@ $(document).ready(() => {
     dropZone.addEventListener('drop', handleDragFileSelect, false);
     let inputFile = $('.inputfile')[0];
     inputFile.addEventListener('change', handleFileSelect, false);
- });
- 
- /**
-  * Boton para almacenar un nuevo fichero en la DB
-  * y que aparezca otro nuevo boton en el div stored
-  */
- $("#save").click(() => {
-    $.get("/data", /* Llamada a AJAX para que se guarde el fichero */
-    {   name: "filename",
-        data: original.value,
-    },
-     'json'
-    );
-   let i = document.getElementById("stored").childElementCount() + 1;
-   let element = document.createElement("btn" + i);
-   let type = "button";
-   let name = "Input" + i;
-   element.setAttribute("button",type);
-   element.onclick = function(){
-     alert("BUTTON" + i);
-   }
-    document.getElementById("stored").appendChild(element);
+    
+    //  Definimos la ruta para guardar los ficheros en la BD
+    $.get('/data', {}, (data) => {
+       for( i = 0; i < 4; i++){
+           if(data[i]){
+               $('button.example').get(i).className = "Button";
+               $('button.example').get(i).texContent = data[i].file;
+           }
+       } 
+    });
+    
+    /**
+    * Boton para almacenar un nuevo fichero en la DB
+    * y que aparezca otro nuevo boton en el div stored
+    */
+    $("#save").click(() =>{
+       $.get('mongo/' + $("#Title").val(), {
+           content: $("original").val()
+       })
+    });
  });
 })();
