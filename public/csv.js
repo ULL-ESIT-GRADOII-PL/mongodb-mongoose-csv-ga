@@ -86,13 +86,13 @@ $(document).ready(() => {
     
     //  Definimos la ruta para guardar los ficheros en la BD
     $.get('/file', {}, (data) => {
-       for(let i = 0; i < 4; i++){
-           if(data[i]){
-               $('button.example').get(i).className = "Button";
-               $('button.example').get(i).texContent = data[i].file;
-           }
-       } 
-    });
+         for(let i = 0; i < 4; i++){
+             if(data[i]){
+                 $('button.example').get(i).className = "Button";
+                 $('button.example').get(i).texContent = data[i].file;
+             }
+         } 
+      });
     
     /**
     * Boton para almacenar un nuevo fichero en la DB
@@ -101,6 +101,16 @@ $(document).ready(() => {
     $("#save").click(() =>{
        $.get('/mongo/' + $("#Title").val(), {
            data: original.value
+       });
+       const name = $("#Title").val();
+       let btn = '<button id="' +name + '" class ="example" type="button">' + name + '</button>';
+       $("#buttons").append(btn);
+       Title.value = " ";
+       // Rellenamos la textArea con el contenido del fichero
+       $("name").click(() => {
+          $.get('/fileID', {name}, (file) => {
+          $("#original").val(data);
+       });
        });
     });
  });

@@ -72,7 +72,7 @@ app.get('/file', (req, res) => {
 });
 
 // Cuando se busca un fichero determinado
-app.get('/fileName', function(req, res) {
+app.get('/fileID', function(req, res) {
     CSV.find({
         file: req.query.file
     }, function(err, data) {
