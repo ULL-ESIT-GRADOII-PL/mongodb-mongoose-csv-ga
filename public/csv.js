@@ -24,9 +24,7 @@ const fillTable = (data) => {
 /* Volcar en la textarea de entrada 
  * #original el contenido del fichero fileName */
 const dump = (fileName) => {
-      
   $.get(fileName, function (data) {
-        
       $("#original").val(data);
   });
 };
@@ -34,11 +32,8 @@ const dump = (fileName) => {
 const handleFileSelect = (evt) => {
   evt.stopPropagation();
   evt.preventDefault();
-
  $.get(fileName, function (data) {
-       
       $("#original").val(data);
-      
   });
 }
 
@@ -46,12 +41,9 @@ const handleFileSelect = (evt) => {
 const handleDragFileSelect = (evt) => {
   evt.stopPropagation();
   evt.preventDefault();
-
   var files = evt.dataTransfer.files;
-
   var read = new FileReader();
   read.onload = (e) => {
-  
     $("#original").val(e.target.result);
     evt.target.style.background = "white";
   };
@@ -65,18 +57,13 @@ const handleDragOver = (evt) => {
 }
 
 $(document).ready(() => {
-      
     let original = document.getElementById("original");  
     if (window.localStorage && localStorage.original) {
       original.value = localStorage.original;
     }
-    
    $("#parse").click( () => {
-         
         if (window.localStorage) localStorage.original = original.value;
-        
         $.get("/csv", /* Llamada a AJAX para que calcule la tabla */
-        
           { input: original.value }, 
           fillTable,
           'json'
@@ -103,7 +90,6 @@ $(document).ready(() => {
   * y que aparezca otro nuevo boton en el div stored
   */
  $("#save").click(() => {
-     
     $.get("/data", /* Llamada a AJAX para que se guarde el fichero */
     {   name: "filename",
         data: original.value,

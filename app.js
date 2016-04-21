@@ -26,22 +26,50 @@ app.get('/csv', (request, response) => {
 	response.send({"rows" : calculate(request.query.input)});
 });
 
-
-app.listen(port,ip, () =>{
-   console.log(`App listening at ${addr}`);
-   
 // Incluimos Mongoose como ODM
 const mongoose = require("mongoose");
-//  Incluimos los modulos de la base de datos
-const connect = require('./routes/connect');
-let create = require('./routes/create');
-let remove = require('./routes/remove');
-let query = require('./routes/query');
+const CSV = require('./routes/database');
+
+app.param('input', (req,resp,next, input) =>{
+   if(input.match(/^[a-z_]\w*\.csv$/i))
+      req.input =  input; 
+      else
+         next(new Error(`<${input} no find`));
+      next();
+});
+
+app.get('/mongo/:input',(req, resp) =>{
+   CSV.find({}, (err, data) =>{
+      if(err)
+         return err;
+      if(data.length >= 4)
+         CSV.find({ file: data[0].file }).remove().exec();
+   });
+   let input = new CSV({
+      "file": req.input,
+      "data": req.query.content
+   });
+   input.save((err) => {
+      if(err){
+         console.log(`Something goes wrong: ${err}`);
+         return err;
+      }
+      console.log(`File saved: ${input}`);
+   });
+});
 
 //  Definimos las rutas que sirve la bd
 app.get('/data', (req, res) => {
    console.log(req.params.filename);
-   res.send({"original" : create( request.query.name,request.query.data)});
-});
+   CSV.find({}, (err, data) => {
+      if(err)
+      return err;
+      res.send(data);
+   });
 });
 
+
+// Mostramos la direccion en la que escucha el servidor
+app.listen(port,ip, () =>{
+   console.log(`App listening at ${addr}`);
+});  
